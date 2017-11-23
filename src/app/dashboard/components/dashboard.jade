@@ -1,0 +1,13 @@
+.spinner-wrapper(ng-show="$ctrl.incidents.length == 0")
+  .spinner
+    .double-bounce1
+    .double-bounce2
+.row
+  .col-12
+    .row
+      .col-12.col-medium-6.col-large-6
+        doughnut-chart
+      .col-12.col-medium-6.col-large-6
+        line-chart(ng-if="$ctrl.lineChartData" data="$ctrl.lineChartData")
+  .col-12
+    incident-list(incidents="$ctrl.incidents" users="$ctrl.users" load-more="$ctrl.loadMore")

@@ -1,0 +1,32 @@
+.incident-list {
+  background: white;
+  border-radius: 7px;
+  padding: 0 15px;
+  &__header {
+    padding: 10px 0 0;
+    display: flex;
+    flex-direction: row;
+    line-height: 20px;
+    i {
+      line-height: 76px;
+    }
+  }
+  table {
+    width: 100%;
+    thead {
+      text-align: left;
+      border-bottom: 2px solid #f4f4f4;
+      border-top: 2px solid #f4f4f4;
+    }
+    tr {
+      border: none;
+      &:nth-child(even) {
+        background: #f4f4f4;
+      }
+      td {
+        border: none;
+        padding: 7px 4px;
+      }
+    }
+  }
+}

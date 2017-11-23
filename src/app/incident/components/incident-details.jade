@@ -1,0 +1,34 @@
+md-dialog.incident-details(aria-label='Incident {{item.number}}')
+  form(ng-cloak='')
+    md-toolbar
+      .md-toolbar-tools
+        i.material-icons warning
+        h2
+          span Incident
+          | {{item.number}}
+        span(flex='')
+        md-button.md-icon-button(ng-click='cancel()')
+          i.material-icons close
+    md-dialog-content
+      .md-dialog-content
+        .row
+          .col-large-6
+            .col-12.incident-details__label Description
+            .col-12 {{item.description}}
+          .col-large-6
+            .row
+              .col-6
+                .col-12.incident-details__label Caller
+                .col-12 {{item.user.result.first_name}} {{item.user.result.last_name}}
+              .col-6
+                .col-12.incident-details__label Opened
+                .col-12 {{item.opened_at}}
+            .row
+              .col-6
+                .col-12.incident-details__label Urgency
+                .col-12
+                  span.badge.badge--black {{item.urgency}}
+              .col-6
+                .col-12.incident-details__label Sate
+                .col-12
+                  span.badge.badge--gray {{state[item.state]}}

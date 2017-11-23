@@ -1,0 +1,25 @@
+.chart {
+  margin: 20px 0;
+  &__title {
+    font-size: 18px;
+    color: #888;
+  }
+  &__info {
+    margin-top: 18px;
+    &__row {
+      span {
+        display: inline-block;
+        box-sizing: border-box;
+        &:nth-child(2n+1) {
+          width: 70%;
+          padding-right: 5px;
+          text-align: right;
+        }
+        &:nth-child(2n+2) {
+          width: 30%;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}

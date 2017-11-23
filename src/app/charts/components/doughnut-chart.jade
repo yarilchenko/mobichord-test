@@ -1,0 +1,14 @@
+.chart.col-large-12
+  .chart__title Incidents By State
+  .row
+    .col-8.col-medium-8.col-large-8
+      canvas#line.chart.chart-doughnut(
+      chart-data="$ctrl.data"
+      chart-labels="$ctrl.labels")
+    .col-4.col-medium-4.col-large-4
+      .chart__info
+        .chart__info__row(ng-repeat="label in $ctrl.labels")
+          span(
+            ng-class="{'chart__info--bold': label == 'New','chart__info--gray': label == 'On Hold'}"
+          ) {{label}}
+          span {{$ctrl.data[$index]}}
