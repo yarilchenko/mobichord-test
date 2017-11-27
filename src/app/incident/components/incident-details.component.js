@@ -6,10 +6,11 @@
     .controller('IncidentDetailsController', IncidentDetailsController);
 
   /** @ngInject */
-  function IncidentDetailsController($scope, $mdDialog,item) {
-    $scope.item = item;
+  function IncidentDetailsController($mdDialog, item) {
+    var vm = this;
+    vm.item = item;
 
-    $scope.cancel = function() {
+    vm.cancel = function() {
       $mdDialog.cancel();
     };
   }

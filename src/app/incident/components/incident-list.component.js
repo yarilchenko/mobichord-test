@@ -30,6 +30,7 @@
     vm.showDetails = function (incident) {
       $mdDialog.show({
         controller: 'IncidentDetailsController',
+        controllerAs: 'vm',
         templateUrl: 'app/incident/components/incident-details.html',
         locals: {
           item: incident

@@ -5,10 +5,10 @@
     .factory('AuthHeader', AuthHeaderFactory);
 
   /** @ngInject */
-  function AuthHeaderFactory($base64, serviceNowAuth) {
+  function AuthHeaderFactory(serviceNowAuth) {
     return {
       request: function addAuthHeaderToRequest(config) {
-        config.headers.Authorization = 'Basic ' + $base64.encode(serviceNowAuth.username + ':' + serviceNowAuth.password);
+        config.headers.Authorization = 'Basic ' + serviceNowAuth;
 
         return config;
       }
