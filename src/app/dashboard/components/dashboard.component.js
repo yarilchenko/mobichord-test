@@ -33,10 +33,6 @@
       }
     };
 
-    vm.sizeOf = function (obj) {
-      return Object.keys(obj).length;
-    };
-
     function getIncidents(offset) {
       offset = offset || 0;
       vm.busy = true;
