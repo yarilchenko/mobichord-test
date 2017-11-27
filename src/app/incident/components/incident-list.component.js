@@ -6,17 +6,15 @@
       templateUrl: 'app/incident/components/incident-list.html',
       controller: IncidentListController,
       bindings: {
-        users: '<',
         incidents: '<',
         loadMore: '<'
       }
     });
 
   /** @ngInject */
-  function IncidentListController(STATE_FLAG, $mdDialog, moment) {
+  function IncidentListController($mdDialog, moment) {
     var vm = this;
 
-    vm.flags = STATE_FLAG;
     vm.filter = {};
     vm.moment = moment;
 
@@ -24,12 +22,9 @@
      * TODO: move this stuff to separate file (filters folder)
      */
     vm.search = function(item) {
-      if (!vm.filter.keyword
-        || (item.number.toLowerCase().indexOf(vm.filter.keyword.toLowerCase()) != -1)
-        || ((item.user.result.first_name.toLowerCase() + ' ' + item.user.result.last_name.toLowerCase()).indexOf(vm.filter.keyword.toLowerCase()) != -1) ){
-        return true;
-      }
-      return false;
+      return (!vm.filter.keyword
+        || ~(item.number.display_value.toLowerCase().indexOf(vm.filter.keyword.toLowerCase()))
+        || ~(item.caller_id.display_value.toLowerCase()).indexOf(vm.filter.keyword.toLowerCase()) )
     };
 
     vm.showDetails = function (incident) {

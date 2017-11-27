@@ -8,23 +8,27 @@
     });
 
   /** @ngInject */
-  function DashboardController(IncidentService, UserService, StatsService, _, moment) {
+  function DashboardController(IncidentService, StatsService, _, moment) {
     var vm = this;
-    vm.users = {};
+
     vm.incidents = [];
     /**
      * TODO: better to patch factory with this flag
      */
     vm.busy = true;
 
-    vm.incidentsCount = StatsService.get({count: true});
 
     vm.$onInit = function () {
+      StatsService.get({count: true})
+        .$promise
+        .then(function(data) {
+          vm.incidentsCount = data.result.stats.count;
+        });
       getIncidents();
     };
 
     vm.loadMore = function() {
-      if(!vm.busy || vm.incidents.length < vm.incidentsCount) {
+      if(!vm.busy && vm.incidents.length < vm.incidentsCount) {
         getIncidents(vm.incidents.length);
       }
     };
@@ -43,16 +47,12 @@
           vm.lineChartData = _(vm.incidents)
               .groupBy(monthYear)
               .value();
-          data.result.forEach(function (incident) {
-            var userId = incident.caller_id.value;
-            vm.users[userId] = UserService.get(userId);
-          });
           vm.busy = false;
         });
     }
 
     function monthYear(item) {
-      return moment(item.opened_at).format('YYYY MMM DD');
+      return moment(item.opened_at.value).format('YYYY MMM DD');
     }
   }
 

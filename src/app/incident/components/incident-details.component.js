@@ -6,9 +6,8 @@
     .controller('IncidentDetailsController', IncidentDetailsController);
 
   /** @ngInject */
-  function IncidentDetailsController($scope, $mdDialog, STATE_FLAG,item) {
+  function IncidentDetailsController($scope, $mdDialog,item) {
     $scope.item = item;
-    $scope.state = STATE_FLAG;
 
     $scope.cancel = function() {
       $mdDialog.cancel();

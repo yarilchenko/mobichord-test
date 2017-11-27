@@ -1,11 +1,11 @@
-md-dialog.incident-details(aria-label='Incident {{item.number}}')
+md-dialog.incident-details(aria-label='Incident {{item.number.display_value}}')
   form(ng-cloak='')
     md-toolbar
       .md-toolbar-tools
         i.material-icons warning
         h2
           span Incident
-          | {{item.number}}
+          | {{item.number.display_value}}
         span(flex='')
         md-button.md-icon-button(ng-click='cancel()')
           i.material-icons close
@@ -14,21 +14,21 @@ md-dialog.incident-details(aria-label='Incident {{item.number}}')
         .row
           .col-large-6
             .col-12.incident-details__label Description
-            .col-12 {{item.description}}
+            .col-12 {{item.description.display_value}}
           .col-large-6
             .row
               .col-6
                 .col-12.incident-details__label Caller
-                .col-12 {{item.user.result.first_name}} {{item.user.result.last_name}}
+                .col-12 {{item.caller_id.display_value}}
               .col-6
                 .col-12.incident-details__label Opened
-                .col-12 {{item.opened_at}}
+                .col-12 {{item.opened_at.display_value}}
             .row
               .col-6
                 .col-12.incident-details__label Urgency
                 .col-12
-                  span.badge.badge--black {{item.urgency}}
+                  span.badge.badge--black {{item.urgency.value}}
               .col-6
                 .col-12.incident-details__label Sate
                 .col-12
-                  span.badge.badge--gray {{state[item.state]}}
+                  span.badge.badge--gray {{item.state.display_value}}

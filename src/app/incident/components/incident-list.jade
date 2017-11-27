@@ -26,9 +26,9 @@
       th Opened
       th State
     tbody
-      tr(ng-click="$ctrl.showDetails(incident)" ng-repeat="incident in $ctrl.incidents | filter: {state: $ctrl.filter.state, urgency: $ctrl.filter.urgency} | filter:$ctrl.search" ng-init="incident.user = $ctrl.users[incident.caller_id.value]")
-        td {{incident.number}}
-        td {{incident.urgency}}
-        td {{incident.user.result.first_name}} {{incident.user.result.last_name}}
-        td {{$ctrl.moment(incident.opened_at).format('L')}}
-        td {{$ctrl.flags[incident.state]}}
+      tr(ng-click="$ctrl.showDetails(incident)" ng-repeat="incident in $ctrl.incidents | filter: {state: {value:$ctrl.filter.state}, urgency: {value: $ctrl.filter.urgency}} | filter:$ctrl.search" ng-init="incident.user = $ctrl.users[incident.caller_id.value]")
+        td {{incident.number.display_value}}
+        td {{incident.urgency.display_value}}
+        td {{incident.caller_id.display_value}}
+        td {{$ctrl.moment(incident.opened_at.value).format('L')}}
+        td {{incident.state.display_value}}
